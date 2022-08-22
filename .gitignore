@@ -1,6 +1,10 @@
 # macOS
 .DS_Store
 
-# Visual Studio
+## Visual Studio
+
+# Build results
+[Bb]in/
+[Oo]bj/
 .vs
 

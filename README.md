@@ -1,4 +1,3 @@
-# Sakura Resources
-Sakura Resources is a component that encapsulates systems related to resources
-in my "Sakura" game.
-
+# Sakura Nodes
+Sakura Nodes is a component that encapsulates systems related to nodes in my
+"Sakura" game.

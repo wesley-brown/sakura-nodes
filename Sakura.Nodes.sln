@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakura.Nodes.Core.Tests", "tests\Sakura.Nodes.Core.Tests\Sakura.Nodes.Core.Tests.csproj", "{B5B59E65-A50A-4F8E-AD5B-E5DD6A2AA23D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sakura.Nodes.Core", "src\Sakura.Nodes.Core\Sakura.Nodes.Core.csproj", "{3D280031-23F5-41C9-AF53-5B0166F26D37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5B59E65-A50A-4F8E-AD5B-E5DD6A2AA23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B59E65-A50A-4F8E-AD5B-E5DD6A2AA23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B59E65-A50A-4F8E-AD5B-E5DD6A2AA23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B59E65-A50A-4F8E-AD5B-E5DD6A2AA23D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D280031-23F5-41C9-AF53-5B0166F26D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D280031-23F5-41C9-AF53-5B0166F26D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D280031-23F5-41C9-AF53-5B0166F26D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D280031-23F5-41C9-AF53-5B0166F26D37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC0AC613-AFE3-4936-9B78-8D52A448DD2C}
+	EndGlobalSection
+EndGlobal
