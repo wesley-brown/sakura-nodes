@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Sakura.Nodes.Core
 {
@@ -34,36 +33,32 @@ namespace Sakura.Nodes.Core
             out Node node)
         {
             var errors = new List<string>();
-            if (entity == null)
-                errors.Add("The entity ID of a node cannot be null.");
+            errors.AddRange(ErrorsForEntity(entity));
             if (resourceItemID == null)
                 errors.Add("The resource item ID of a node cannot be null.");
             if (errors.Count > 0)
                 node = null;
             else
                 node = new Node(
-                    entity,
+                    new Guid(entity),
                     resourceItemID);
             return errors.ToArray();
         }
 
+        private static string[] ErrorsForEntity(string entity)
+        {
+            var errors = new List<string>();
+            if (entity == null)
+                errors.Add("The entity ID of a node cannot be null.");
+            return errors.ToArray();
+        }
+
         private Node(
-            string entity,
+            Guid entity,
             string resourceItemID)
         {
-            Debug.Assert(entity != null);
-            try
-            {
-                this.entity = new Guid(entity);
-            }
-            catch (FormatException)
-            {
-                throw new NotImplementedException();
-            }
-            catch (OverflowException)
-            {
-                throw new NotImplementedException();
-            }
+            this.entity = entity;
+
         }
 
         private readonly Guid entity;
