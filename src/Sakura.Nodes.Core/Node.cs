@@ -34,8 +34,7 @@ namespace Sakura.Nodes.Core
         {
             var errors = new List<string>();
             errors.AddRange(ErrorsForEntity(entity));
-            if (resourceItemID == null)
-                errors.Add("The resource item ID of a node cannot be null.");
+            errors.AddRange(ErrorsForResourceItemID(resourceItemID));
             if (errors.Count > 0)
                 node = null;
             else
@@ -59,15 +58,24 @@ namespace Sakura.Nodes.Core
             return errors.ToArray();
         }
 
+        private static string[] ErrorsForResourceItemID(string resourceItemID)
+        {
+            var errors = new List<string>();
+            if (resourceItemID == null)
+                errors.Add("The resource item ID of a node cannot be null.");
+            return errors.ToArray();
+        }
+
         private Node(
             Guid entity,
             string resourceItemID)
         {
             this.entity = entity;
-
+            this.resourceItemID = resourceItemID;
         }
 
         private readonly Guid entity;
+        private readonly string resourceItemID;
 
         /// <summary>
         ///     The entity that this Node represents.
@@ -81,12 +89,24 @@ namespace Sakura.Nodes.Core
         }
 
         /// <summary>
+        ///     The item ID of the resource that this Node produces.
+        /// </summary>
+        public string ResourceItemID
+        {
+            get
+            {
+                return resourceItemID;
+            }
+        }
+
+        /// <summary>
         ///     The string representation of this Node.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Entity={Entity}";
+            return $"Entity={Entity}"
+                + $", Resource Item ID={ResourceItemID}";
         }
     }
 }

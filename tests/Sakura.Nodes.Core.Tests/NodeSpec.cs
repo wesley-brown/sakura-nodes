@@ -17,8 +17,12 @@ namespace NodeSpec
                 out var node);
             Assert.Multiple(() =>
             {
-                Assert.That(errors, Is.Not.Empty);
-                Assert.That(node, Is.Null);
+                Assert.That(
+                    errors,
+                    Is.Not.Empty);
+                Assert.That(
+                    node,
+                    Is.Null);
             });
         }
 
@@ -35,8 +39,12 @@ namespace NodeSpec
                 out var node);
             Assert.Multiple(() =>
             {
-                Assert.That(errors, Is.Not.Empty);
-                Assert.That(node, Is.Null);
+                Assert.That(
+                    errors,
+                    Is.Not.Empty);
+                Assert.That(
+                    node,
+                    Is.Null);
             });
         }
 
@@ -51,8 +59,12 @@ namespace NodeSpec
                 out var node);
             Assert.Multiple(() =>
             {
-                Assert.That(errors, Is.Not.Empty);
-                Assert.That(node, Is.Null);
+                Assert.That(
+                    errors,
+                    Is.Not.Empty);
+                Assert.That(
+                    node,
+                    Is.Null);
             });
         }
     }
@@ -71,9 +83,38 @@ namespace NodeSpec
                 out var node);
             Assert.Multiple(() =>
             {
-                Assert.That(errors, Is.Empty);
-                Assert.That(node, Is.Not.Null);
-                Assert.That(node.ToString(), Does.Contain(entity));
+                Assert.That(
+                    errors,
+                    Is.Empty);
+                Assert.That(
+                    node,
+                    Is.Not.Null);
+                Assert.That(
+                    node.ToString(),
+                    Does.Contain(node.Entity.ToString()));
+            });
+        }
+
+        [Test]
+        public void Includes_The_Resource_Item_ID()
+        {
+            var entity = "9ba215aa-6536-44b8-88e3-4419f2db8d12";
+            var resourceItemID = "resource";
+            var errors = Node.TryParse(
+                entity,
+                resourceItemID,
+                out var node);
+            Assert.Multiple(() =>
+            {
+                Assert.That(
+                    errors,
+                    Is.Empty);
+                Assert.That(
+                    node,
+                    Is.Not.Null);
+                Assert.That(
+                    node.ToString(),
+                    Does.Contain(node.ResourceItemID));
             });
         }
     }
