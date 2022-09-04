@@ -50,6 +50,12 @@ namespace Sakura.Nodes.Core
             var errors = new List<string>();
             if (entity == null)
                 errors.Add("The entity ID of a node cannot be null.");
+            var isGuid = Guid.TryParse(
+                entity,
+                out _);
+            if (!isGuid)
+                errors.Add(
+                    "The entity ID of a node must be in the form of a GUID.");
             return errors.ToArray();
         }
 

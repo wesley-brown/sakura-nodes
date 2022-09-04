@@ -19,6 +19,21 @@ namespace NodeSpec
             Assert.IsNull(node);
         }
 
+        [TestCase("Not a GUID")]
+        [TestCase("3509959c 8fdf~450a_8ff8-2ea578a62f74")]
+        [TestCase("3509959c-8fdf-450a-8ff8-2ea578a62f7")]
+        [TestCase("3509959c-8fdf-450a-8ff8-2ea578a62f745")]
+        public void Does_Not_Support_An_Entity_ID_That_Is_Not_In_The_Form_Of_A_Guid(string entity)
+        {
+            var resourceItemID = "resource";
+            var errors = Node.TryParse(
+                entity,
+                resourceItemID,
+                out var node);
+            Assert.IsNotEmpty(errors);
+            Assert.IsNull(node);
+        }
+
         [Test]
         public void Does_Not_Support_A_Null_Resource_Item_ID()
         {
