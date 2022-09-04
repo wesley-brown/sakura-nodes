@@ -15,8 +15,11 @@ namespace NodeSpec
                 entity,
                 resourceItemID,
                 out var node);
-            Assert.IsNotEmpty(errors);
-            Assert.IsNull(node);
+            Assert.Multiple(() =>
+            {
+                Assert.That(errors, Is.Not.Empty);
+                Assert.That(node, Is.Null);
+            });
         }
 
         [TestCase("Not a GUID")]
@@ -30,8 +33,11 @@ namespace NodeSpec
                 entity,
                 resourceItemID,
                 out var node);
-            Assert.IsNotEmpty(errors);
-            Assert.IsNull(node);
+            Assert.Multiple(() =>
+            {
+                Assert.That(errors, Is.Not.Empty);
+                Assert.That(node, Is.Null);
+            });
         }
 
         [Test]
@@ -43,8 +49,11 @@ namespace NodeSpec
                 entity,
                 resourceItemID,
                 out var node);
-            Assert.IsNotEmpty(errors);
-            Assert.IsNull(node);
+            Assert.Multiple(() =>
+            {
+                Assert.That(errors, Is.Not.Empty);
+                Assert.That(node, Is.Null);
+            });
         }
     }
 
@@ -60,11 +69,12 @@ namespace NodeSpec
                 entity,
                 resourceItemID,
                 out var node);
-            Assert.IsEmpty(errors);
-            Assert.IsNotNull(node);
-            StringAssert.Contains(
-                entity,
-                node.ToString());
+            Assert.Multiple(() =>
+            {
+                Assert.That(errors, Is.Empty);
+                Assert.That(node, Is.Not.Null);
+                Assert.That(node.ToString(), Does.Contain(entity));
+            });
         }
     }
 }
