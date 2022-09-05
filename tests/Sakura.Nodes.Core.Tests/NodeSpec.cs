@@ -4,7 +4,7 @@ using Sakura.Nodes.Core;
 namespace NodeSpec
 {
     [TestFixture]
-    public class Creating
+    public class Parsing
     {
         [Test]
         public void Does_Not_Support_A_Null_Entity_ID()
