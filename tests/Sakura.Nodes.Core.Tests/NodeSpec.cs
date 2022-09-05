@@ -12,14 +12,14 @@ namespace NodeSpec
         {
             var entity = new Guid("fccd665d-4d70-4023-b801-8256c511cd23");
             string resourceItemID = null;
-            var canBeHarvested = true;
+            var isMature = true;
             Assert.That(
                 () =>
                 {
                     Node.FullyDefined(
                         entity,
                         resourceItemID,
-                        canBeHarvested);
+                        isMature);
                 },
                 Throws.Exception.TypeOf<ArgumentNullException>());
         }
@@ -71,11 +71,11 @@ namespace NodeSpec
         {
             string entity = null;
             var resourceItemID = "resource";
-            var canBeHarvested = true;
+            var isMature = true;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -95,11 +95,11 @@ namespace NodeSpec
         public void Does_Not_Support_An_Entity_ID_That_Is_Not_In_The_Form_Of_A_Guid(string entity)
         {
             var resourceItemID = "resource";
-            var canBeHarvested = false;
+            var isMature = false;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -117,11 +117,11 @@ namespace NodeSpec
         {
             var entity = "945186bf-ba80-43bc-b41b-6aa542b88c63";
             string resourceItemID = null;
-            var canBeHarvested = true;
+            var isMature = true;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -143,11 +143,11 @@ namespace NodeSpec
         {
             var entity = "734856d2-e288-4c2f-9862-e62c5ccc69c3";
             var resourceItemID = "resource";
-            var canBeHarvested = false;
+            var isMature = false;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -168,11 +168,11 @@ namespace NodeSpec
         {
             var entity = "9ba215aa-6536-44b8-88e3-4419f2db8d12";
             var resourceItemID = "resource";
-            var canBeHarvested = true;
+            var isMature = true;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -189,15 +189,15 @@ namespace NodeSpec
         }
 
         [Test]
-        public void Includes_Its_Can_Be_Harvested_Status()
+        public void Includes_Its_Maturity()
         {
             var entity = "5890a217-d80e-4c0f-bbc6-1096c3076479";
             var resourceItemID = "resource";
-            var canBeHarvested = true;
+            var isMature = true;
             var errors = Node.TryParse(
                 entity,
                 resourceItemID,
-                canBeHarvested,
+                isMature,
                 out var node);
             Assert.Multiple(() =>
             {
@@ -209,7 +209,7 @@ namespace NodeSpec
                     Is.Not.Null);
                 Assert.That(
                     node.ToString(),
-                    Does.Contain(node.CanBeHarvested.ToString()));
+                    Does.Contain(node.IsMature.ToString()));
             });
         }
     }

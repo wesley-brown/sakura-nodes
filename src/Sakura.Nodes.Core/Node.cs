@@ -71,8 +71,8 @@ namespace Sakura.Nodes.Core
         /// <param name="resourceItemID">
         ///     The item ID of the resource the Node will contain.
         /// </param>
-        /// <param name="canBeHarvested">
-        ///     Whether or not the Node can be harvested for its resource.
+        /// <param name="isMature">
+        ///     Whether or not the Node is mature.
         /// </param>
         /// <returns>
         ///     The created Node.
@@ -83,14 +83,14 @@ namespace Sakura.Nodes.Core
         public static Node FullyDefined(
             Guid entity,
             string resourceItemID,
-            bool canBeHarvested)
+            bool isMature)
         {
             if (resourceItemID == null)
                 throw new ArgumentNullException(nameof(resourceItemID));
             return new Node(
                 entity,
                 resourceItemID,
-                canBeHarvested);
+                isMature);
         }
 
         /// <summary>
@@ -108,8 +108,8 @@ namespace Sakura.Nodes.Core
         /// <param name="node">
         ///     The created Node, if there is one.
         /// </param>
-        /// <param name="canBeHarvested">
-        ///     Whether or not this Node can be harvested for its resource.
+        /// <param name="isMature">
+        ///     Whether or not this Node is mature.
         /// </param>
         /// <returns>
         ///     A list of errors encountered while trying to create a Node, if
@@ -118,7 +118,7 @@ namespace Sakura.Nodes.Core
         public static string[] TryParse(
             string entity,
             string resourceItemID,
-            bool canBeHarvested,
+            bool isMature,
             out Node node)
         {
             var errors = new List<string>();
@@ -130,7 +130,7 @@ namespace Sakura.Nodes.Core
                 node = FullyDefined(
                     new Guid(entity),
                     resourceItemID,
-                    canBeHarvested);
+                    isMature);
             return errors.ToArray();
         }
 
@@ -159,16 +159,16 @@ namespace Sakura.Nodes.Core
         private Node(
             Guid entity,
             string resourceItemID,
-            bool canBeHarvested)
+            bool isMature)
         {
             this.entity = entity;
             this.resourceItemID = resourceItemID;
-            this.canBeHarvested = canBeHarvested;
+            this.isMature = isMature;
         }
 
         private readonly Guid entity;
         private readonly string resourceItemID;
-        private readonly bool canBeHarvested;
+        private readonly bool isMature;
 
         /// <summary>
         ///     The entity that this Node represents.
@@ -193,14 +193,13 @@ namespace Sakura.Nodes.Core
         }
 
         /// <summary>
-        ///     Whether or not this node can be harvested for its resource or
-        ///     not.
+        ///     Whether or not this node is mature.
         /// </summary>
-        public bool CanBeHarvested
+        public bool IsMature
         {
             get
             {
-                return canBeHarvested;
+                return isMature;
             }
         }
 
@@ -212,7 +211,7 @@ namespace Sakura.Nodes.Core
         {
             return $"Entity={Entity}"
                 + $", Resource Item ID={ResourceItemID}"
-                + $", Can be Harvested={CanBeHarvested}";
+                + $", Is Mature={IsMature}";
         }
     }
 }
