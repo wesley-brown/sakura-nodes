@@ -9,14 +9,40 @@ namespace Sakura.Nodes.Core
     public sealed class Node
     {
         /// <summary>
+        ///     Create an immature Node.
+        /// </summary>
+        /// <param name="entity">
+        ///     The ID of the entity that the Node will represent.
+        /// </param>
+        /// <param name="resourceItemID">
+        ///     The item ID of the resource the Node will contain.
+        /// </param>
+        /// <returns>
+        ///     The created immature Node.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given resource item ID is <c>null</c>.
+        /// </exception>
+        public static Node Immature(
+            Guid entity,
+            string resourceItemID)
+        {
+            if (resourceItemID == null)
+                throw new ArgumentNullException(nameof(resourceItemID));
+            return FullyDefined(
+                entity,
+                resourceItemID,
+                false);
+        }
+
+        /// <summary>
         ///     Create a fully defined Node.
         /// </summary>
         /// <param name="entity">
         ///     The ID of the entity that the Node will represent.
         /// </param>
         /// <param name="resourceItemID">
-        ///     The item ID of the resource the Node will produce when
-        ///     harvested.
+        ///     The item ID of the resource the Node will contain.
         /// </param>
         /// <param name="canBeHarvested">
         ///     Whether or not the Node can be harvested for its resource.
