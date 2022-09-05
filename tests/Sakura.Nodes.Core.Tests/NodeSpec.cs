@@ -5,7 +5,7 @@ using Sakura.Nodes.Core;
 namespace NodeSpec
 {
     [TestFixture]
-    public class Creating
+    public class Creating_A_Fully_Defined_Node
     {
         [Test]
         public void Does_Not_Support_A_Resource_Item_ID()

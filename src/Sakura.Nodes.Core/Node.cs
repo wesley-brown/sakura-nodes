@@ -22,7 +22,7 @@ namespace Sakura.Nodes.Core
         ///     Whether or not the Node can be harvested for its resource.
         /// </param>
         /// <returns>
-        ///     A fully defined Node.
+        ///     The created Node.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given resource item ID is <c>null</c>.
@@ -34,7 +34,10 @@ namespace Sakura.Nodes.Core
         {
             if (resourceItemID == null)
                 throw new ArgumentNullException(nameof(resourceItemID));
-            return null;
+            return new Node(
+                entity,
+                resourceItemID,
+                canBeHarvested);
         }
 
         /// <summary>
