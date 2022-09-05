@@ -45,6 +45,25 @@ namespace NodeSpec
     }
 
     [TestFixture]
+    public class Creating_A_Mature_Node
+    {
+        [Test]
+        public void Does_Not_Support_A_Null_Resource_Item_ID()
+        {
+            var entity = new Guid("bf6eab4c-77e7-4197-bc4f-182dc1069916");
+            string resourceItemID = null;
+            Assert.That(
+                () =>
+                {
+                    Node.Mature(
+                        entity,
+                        resourceItemID);
+                },
+                Throws.Exception.TypeOf<ArgumentNullException>());
+        }
+    }
+
+    [TestFixture]
     public class Parsing
     {
         [Test]

@@ -36,6 +36,33 @@ namespace Sakura.Nodes.Core
         }
 
         /// <summary>
+        ///     Create a mature Node.
+        /// </summary>
+        /// <param name="entity">
+        ///     The ID of the entity that the Node will represent.
+        /// </param>
+        /// <param name="resourceItemID">
+        ///     The item ID of the resource the Node will contain.
+        /// </param>
+        /// <returns>
+        ///     The created mature Node.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given resource item ID is <c>null</c>.
+        /// </exception>
+        public static Node Mature(
+            Guid entity,
+            string resourceItemID)
+        {
+            if (resourceItemID == null)
+                throw new ArgumentNullException(nameof(resourceItemID));
+            return FullyDefined(
+                entity,
+                resourceItemID,
+                true);
+        }
+
+        /// <summary>
         ///     Create a fully defined Node.
         /// </summary>
         /// <param name="entity">
