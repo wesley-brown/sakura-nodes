@@ -80,6 +80,25 @@ namespace NodeSpec
                 },
                 Throws.Exception.TypeOf<ArgumentNullException>());
         }
+
+        [Test]
+        public void Creates_A_Node_That_Is_Mature()
+        {
+            var entity = new Guid("015d47e2-b76c-4992-bdb6-ae962f4f3f73");
+            var resourceItemID = "resource";
+            var node = Node.Mature(
+                entity,
+                resourceItemID);
+            Assert.Multiple(() =>
+            {
+                Assert.That(
+                    node,
+                    Is.Not.Null);
+                Assert.That(
+                    node.IsMature,
+                    Is.True);
+            });
+        }
     }
 
     [TestFixture]
