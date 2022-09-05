@@ -9,6 +9,35 @@ namespace Sakura.Nodes.Core
     public sealed class Node
     {
         /// <summary>
+        ///     Create a fully defined Node.
+        /// </summary>
+        /// <param name="entity">
+        ///     The ID of the entity that the Node will represent.
+        /// </param>
+        /// <param name="resourceItemID">
+        ///     The item ID of the resource the Node will produce when
+        ///     harvested.
+        /// </param>
+        /// <param name="canBeHarvested">
+        ///     Whether or not the Node can be harvested for its resource.
+        /// </param>
+        /// <returns>
+        ///     A fully defined Node.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given resource item ID is <c>null</c>.
+        /// </exception>
+        public static Node FullyDefined(
+            Guid entity,
+            string resourceItemID,
+            bool canBeHarvested)
+        {
+            if (resourceItemID == null)
+                throw new ArgumentNullException(nameof(resourceItemID));
+            return null;
+        }
+
+        /// <summary>
         ///     Try and create a Node with a given entity ID and resource item
         ///     ID.
         /// </summary>

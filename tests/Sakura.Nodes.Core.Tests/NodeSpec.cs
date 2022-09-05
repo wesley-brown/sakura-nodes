@@ -1,8 +1,30 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Sakura.Nodes.Core;
 
 namespace NodeSpec
 {
+    [TestFixture]
+    public class Creating
+    {
+        [Test]
+        public void Does_Not_Support_A_Resource_Item_ID()
+        {
+            var entity = new Guid("fccd665d-4d70-4023-b801-8256c511cd23");
+            string resourceItemID = null;
+            var canBeHarvested = true;
+            Assert.That(
+                () =>
+                {
+                    Node.FullyDefined(
+                        entity,
+                        resourceItemID,
+                        canBeHarvested);
+                },
+                Throws.Exception.TypeOf<ArgumentNullException>());
+        }
+    }
+
     [TestFixture]
     public class Parsing
     {
