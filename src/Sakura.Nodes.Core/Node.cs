@@ -74,7 +74,7 @@ namespace Sakura.Nodes.Core
             if (errors.Count > 0)
                 node = null;
             else
-                node = new Node(
+                node = FullyDefined(
                     new Guid(entity),
                     resourceItemID,
                     canBeHarvested);
