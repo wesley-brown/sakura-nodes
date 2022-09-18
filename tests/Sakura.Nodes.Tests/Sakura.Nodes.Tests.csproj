@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Properties related to frameworks -->
+  <PropertyGroup>
+    <!-- Test project can target latest -->
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Properties related to NuGet -->
+  <PropertyGroup>
+    <!-- Don't create a NuGet package for a test project -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Properties related to C# compiler options -->
+  <PropertyGroup>
+    <!-- Project being tested doesn't support nullables -->
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <!-- Properties related to code in generated files -->
+  <PropertyGroup>
+    <!-- Project being tested doesn't support implicit usings -->
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Sakura.Nodes\Sakura.Nodes.csproj" />
+  </ItemGroup>
+</Project>
