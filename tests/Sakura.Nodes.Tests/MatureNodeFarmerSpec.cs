@@ -45,6 +45,11 @@ namespace MatureNodeFarmerSpec
 
     internal class DummyMatureNode : MatureNode
     {
+        public void OnHarvest(string resourceItemID)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OnNotHarvested(string error)
         {
             throw new NotImplementedException();
@@ -98,11 +103,36 @@ namespace MatureNodeFarmerSpec
                 matureNode.Error,
                 Is.Not.Null);
         }
+
+        [Test]
+        public void That_Is_Mature_Returns_That_Nodes_Resource()
+        {
+            var matureNode = new SpyMatureNode();
+            var nodes = new OnlyMatureNodes();
+            var farmer = MatureNodeFarmer.Of(
+                matureNode,
+                nodes);
+            var entity = OnlyMatureNodes.MatureNodeID;
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Null);
+            Assert.That(
+                matureNode.HarvestedResource,
+                Is.EqualTo(OnlyMatureNodes.MatureNodeResource));
+        }
     }
 
     internal class SpyMatureNode : MatureNode
     {
         internal string Error { get; private set; }
+
+        internal string HarvestedResource { get; private set; }
+
+        public void OnHarvest(string resourceItemID)
+        {
+            HarvestedResource = resourceItemID;
+        }
 
         public void OnNotHarvested(string error)
         {
@@ -133,6 +163,32 @@ namespace MatureNodeFarmerSpec
             return Node.Immature(
                 new Guid(ImmatureNodeID),
                 "resource");
+        }
+    }
+
+    internal class OnlyMatureNodes : Nodes
+    {
+        public static string MatureNodeID
+        {
+            get
+            {
+                return "02ef2ae5-114f-447a-88b3-8ec363d206da";
+            }
+        }
+
+        public static string MatureNodeResource
+        {
+            get
+            {
+                return "matureNodeResource";
+            }
+        }
+
+        public Node For(string entity)
+        {
+            return Node.Mature(
+                new Guid(MatureNodeID),
+                MatureNodeResource);
         }
     }
 }

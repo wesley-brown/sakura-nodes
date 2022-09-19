@@ -79,6 +79,11 @@ namespace Sakura.Nodes
                     $"Entity '{entity}' is an immature node.");
                 return;
             }
+            else
+            {
+                matureNode.OnHarvest(node.ResourceItemID);
+                return;
+            }
         }
     }
 }
