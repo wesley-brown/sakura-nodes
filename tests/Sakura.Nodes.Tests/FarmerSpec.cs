@@ -1,6 +1,7 @@
 ﻿using System;
 using Sakura.Nodes;
 using NUnit.Framework;
+using Sakura.Nodes.Core;
 
 namespace FarmerSpec
 {
@@ -8,13 +9,41 @@ namespace FarmerSpec
     public class Creating
     {
         [Test]
-        public void Does_Not_Support_A_Null_Nodes()
+        public void Does_Not_Support_A_Null_Mature_Node()
         {
-            Nodes nodes = null;
-            var creation = () => Farmer.Of(nodes);
+            MatureNode matureNode = null;
+            var nodes = new DummyNodes();
+            var creation = () => Farmer.Of(
+                matureNode,
+                nodes);
             Assert.That(
                 creation,
                 Throws.Exception.TypeOf<ArgumentNullException>());
         }
+
+        [Test]
+        public void Does_Not_Support_A_Null_Nodes()
+        {
+            var matureNode = new DummyMatureNode();
+            Nodes nodes = null;
+            var creation = () => Farmer.Of(
+                matureNode,
+                nodes);
+            Assert.That(
+                creation,
+                Throws.Exception.TypeOf<ArgumentNullException>());
+        }
+    }
+
+    internal class DummyNodes : Nodes
+    {
+        public Node For(string entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class DummyMatureNode : MatureNode
+    {
     }
 }
