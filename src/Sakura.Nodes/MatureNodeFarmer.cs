@@ -3,9 +3,9 @@
 namespace Sakura.Nodes
 {
     /// <summary>
-    ///     Tends to a collection of nodes.
+    ///     Tends to mature nodes.
     /// </summary>
-    internal sealed class Farmer
+    internal sealed class MatureNodeFarmer
     {
         /// <summary>
         ///     Create a farmer that harvests mature nodes in a given
@@ -28,7 +28,7 @@ namespace Sakura.Nodes
         /// 
         ///     Thrown when the given collection of nodes is <c>null</c>.
         /// </exception>
-        internal static Farmer Of(
+        internal static MatureNodeFarmer Of(
             MatureNode matureNode,
             Nodes nodes)
         {

@@ -3,7 +3,7 @@ using Sakura.Nodes;
 using NUnit.Framework;
 using Sakura.Nodes.Core;
 
-namespace FarmerSpec
+namespace MatureNodeFarmerSpec
 {
     [TestFixture]
     public class Creating
@@ -13,7 +13,7 @@ namespace FarmerSpec
         {
             MatureNode matureNode = null;
             var nodes = new DummyNodes();
-            var creation = () => Farmer.Of(
+            var creation = () => MatureNodeFarmer.Of(
                 matureNode,
                 nodes);
             Assert.That(
@@ -26,7 +26,7 @@ namespace FarmerSpec
         {
             var matureNode = new DummyMatureNode();
             Nodes nodes = null;
-            var creation = () => Farmer.Of(
+            var creation = () => MatureNodeFarmer.Of(
                 matureNode,
                 nodes);
             Assert.That(
