@@ -52,7 +52,7 @@ namespace MatureNodeFarmerSpec
     }
 
     [TestFixture]
-    public class Harvesting_A_Mature_Node
+    public class Harvesting_A_Node
     {
         [Test]
         public void Defined_By_A_Null_Entity_ID_Is_An_Error()
@@ -83,6 +83,21 @@ namespace MatureNodeFarmerSpec
                 matureNode.Error,
                 Is.Not.Null);
         }
+
+        [Test]
+        public void That_Is_Immature_Is_An_Error()
+        {
+            var matureNode = new SpyMatureNode();
+            var nodes = new OnlyImmatureNodes();
+            var farmer = MatureNodeFarmer.Of(
+                matureNode,
+                nodes);
+            var entity = OnlyImmatureNodes.ImmatureNodeID;
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Not.Null);
+        }
     }
 
     internal class SpyMatureNode : MatureNode
@@ -100,6 +115,24 @@ namespace MatureNodeFarmerSpec
         public Node For(string entity)
         {
             return null;
+        }
+    }
+
+    internal class OnlyImmatureNodes : Nodes
+    {
+        public static string ImmatureNodeID
+        {
+            get
+            {
+                return "25a494af-a88e-42ad-82d2-842b89669053";
+            }
+        }
+
+        public Node For(string entity)
+        {
+            return Node.Immature(
+                new Guid(ImmatureNodeID),
+                "resource");
         }
     }
 }

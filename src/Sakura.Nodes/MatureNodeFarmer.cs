@@ -69,8 +69,16 @@ namespace Sakura.Nodes
             }
             var node = nodes.For(entity);
             if (node == null)
+            {
+                matureNode.OnNotHarvested($"Entity '{entity}' is not a node.");
+                return;
+            }
+            else if (node.IsMature == false)
+            {
                 matureNode.OnNotHarvested(
-                    $"Entity '{entity}' is not a node.");
+                    $"Entity '{entity}' is an immature node.");
+                return;
+            }
         }
     }
 }
