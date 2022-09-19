@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Sakura.Nodes
 {
@@ -60,10 +61,16 @@ namespace Sakura.Nodes
         /// </param>
         public void Harvest(string entity)
         {
+            Debug.Assert(matureNode != null);
+            if (entity == null)
+            {
+                matureNode.OnNotHarvested($"The entity to harvest was null.");
+                return;
+            }
             var node = nodes.For(entity);
             if (node == null)
                 matureNode.OnNotHarvested(
-                    $"Entity '{node}' is not a node.");
+                    $"Entity '{entity}' is not a node.");
         }
     }
 }

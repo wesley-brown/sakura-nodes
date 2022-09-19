@@ -55,6 +55,21 @@ namespace MatureNodeFarmerSpec
     public class Harvesting_A_Mature_Node
     {
         [Test]
+        public void Defined_By_A_Null_Entity_ID_Is_An_Error()
+        {
+            var matureNode = new SpyMatureNode();
+            var nodes = new DummyNodes();
+            var farmer = MatureNodeFarmer.Of(
+                matureNode,
+                nodes);
+            string entity = null;
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Not.Null);
+        }
+
+        [Test]
         public void That_Does_Not_Exist_Is_An_Error()
         {
             var matureNode = new SpyMatureNode();
