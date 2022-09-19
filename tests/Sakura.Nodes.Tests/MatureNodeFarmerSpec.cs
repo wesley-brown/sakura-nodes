@@ -45,5 +45,46 @@ namespace MatureNodeFarmerSpec
 
     internal class DummyMatureNode : MatureNode
     {
+        public void OnNotHarvested(string error)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    [TestFixture]
+    public class Harvesting_A_Mature_Node
+    {
+        [Test]
+        public void That_Does_Not_Exist_Is_An_Error()
+        {
+            var matureNode = new SpyMatureNode();
+            var nodes = new NoNodes();
+            var farmer = MatureNodeFarmer.Of(
+                matureNode,
+                nodes);
+            var entity = "dff3294e-1ff1-4dac-8a08-849bc786cd3e";
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Not.Null);
+        }
+    }
+
+    internal class SpyMatureNode : MatureNode
+    {
+        internal string Error { get; private set; }
+
+        public void OnNotHarvested(string error)
+        {
+            Error = error;
+        }
+    }
+
+    internal class NoNodes : Nodes
+    {
+        public Node For(string entity)
+        {
+            return null;
+        }
     }
 }

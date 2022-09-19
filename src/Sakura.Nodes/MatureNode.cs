@@ -6,6 +6,13 @@ namespace Sakura.Nodes
     /// </summary>
     public interface MatureNode
     {
+        /// <summary>
+        ///     Called when this mature node could not be harvested.
+        /// </summary>
+        /// <param name="error">
+        ///     The error message.
+        /// </param>
+        void OnNotHarvested(string error);
     }
 }
 
