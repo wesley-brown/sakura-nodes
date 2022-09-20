@@ -18,5 +18,15 @@ namespace Sakura.Nodes
         ///     <c>null</c> otherwise.
         /// </returns>
         Node For(string entity);
+
+        /// <summary>
+        ///     Add a given node to this collection of nodes. If there is
+        ///     already a node representing the same entity, the given node to
+        ///     be added will overwrite the previous one.
+        /// </summary>
+        /// <param name="node">
+        ///     The node to add.
+        /// </param>
+        void Add(Node node);
     }
 }

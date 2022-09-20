@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Sakura.Nodes.Core;
 
 namespace Sakura.Nodes
 {
@@ -81,7 +82,11 @@ namespace Sakura.Nodes
             }
             else
             {
-                matureNode.OnHarvest(node.ResourceItemID);
+                var immatureNode = Node.Immature(
+                    node.Entity,
+                    node.ResourceItemID);
+                nodes.Add(immatureNode);
+                matureNode.OnHarvest(immatureNode.ResourceItemID);
                 return;
             }
         }

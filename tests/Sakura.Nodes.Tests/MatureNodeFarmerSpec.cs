@@ -41,6 +41,11 @@ namespace MatureNodeFarmerSpec
         {
             throw new NotImplementedException();
         }
+
+        public void Add(Node node)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class DummyMatureNode : MatureNode
@@ -121,6 +126,25 @@ namespace MatureNodeFarmerSpec
                 matureNode.HarvestedResource,
                 Is.EqualTo(OnlyMatureNodes.MatureNodeResource));
         }
+
+        [Test]
+        public void That_Is_Mature_Makes_That_Node_Immature()
+        {
+            var matureNode = new SpyMatureNode();
+            var nodes = new AlwaysMaturingNodes();
+            var entity = AlwaysMaturingNodes.NodeID;
+            var farmer = MatureNodeFarmer.Of(
+                matureNode,
+                nodes);
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Null);
+            farmer.Harvest(entity);
+            Assert.That(
+                matureNode.Error,
+                Is.Not.Null);
+        }
     }
 
     internal class SpyMatureNode : MatureNode
@@ -146,6 +170,11 @@ namespace MatureNodeFarmerSpec
         {
             return null;
         }
+
+        public void Add(Node node)
+        {
+            // No-op
+        }
     }
 
     internal class OnlyImmatureNodes : Nodes
@@ -163,6 +192,11 @@ namespace MatureNodeFarmerSpec
             return Node.Immature(
                 new Guid(ImmatureNodeID),
                 "resource");
+        }
+
+        public void Add(Node node)
+        {
+            // No-op
         }
     }
 
@@ -184,11 +218,50 @@ namespace MatureNodeFarmerSpec
             }
         }
 
+        public void Add(Node node)
+        {
+            // No-op
+        }
+
         public Node For(string entity)
         {
             return Node.Mature(
                 new Guid(MatureNodeID),
                 MatureNodeResource);
+        }
+    }
+
+    internal class AlwaysMaturingNodes : Nodes
+    {
+        public static string NodeID
+        {
+            get
+            {
+                return "0519f2e3-4268-4d57-a190-c4dc9f375a0d";
+            }
+        }
+
+        public static string NodeResource
+        {
+            get
+            {
+                return "resource";
+            }
+        }
+
+        private bool isNodeMature = true;
+
+        public Node For(string entity)
+        {
+            return Node.FullyDefined(
+                new Guid(NodeID),
+                NodeResource,
+                isNodeMature);
+        }
+
+        public void Add(Node node)
+        {
+            isNodeMature = false;
         }
     }
 }
